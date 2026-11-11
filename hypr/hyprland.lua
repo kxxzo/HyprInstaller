@@ -1,0 +1,12 @@
+require("modules.colors")
+require("modules.skin")
+require("modules.animations")
+require("modules.monitors")
+require("modules.bindings")
+require("modules.autostart")
+require("plugins.dynamic-cursors")
+
+hl.env("WLR_NO_HARDWARE_CURSORS", "1")
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")

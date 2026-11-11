@@ -1,0 +1,80 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+final_space = true
+version = 4
+console_title_template = "{{.UserName}}{{if .Root}} :: root{{end}} :: {{.Shell}}"
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'session'
+    template = '{{ .UserName }}'
+    style = 'diamond'
+    leading_diamond = ""
+    background = 'darkGray'
+    foreground = 'lightWhite'
+
+  [[blocks.segments]]
+    type = 'path'
+    template = ' {{ .Path }}'
+    style = 'powerline'
+    powerline_symbol = ""
+    background_templates = [
+      '{{if gt .Code 0}}red{{ else }}green{{end}}'
+    ]
+    foreground = 'darkGray'
+
+    [blocks.segments.options]
+      style = 'agnoster_short'
+
+  [[blocks.segments]]
+    type = 'git'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}'
+    style = 'powerline'
+    powerline_symbol = ""
+    background = 'magenta'
+    foreground = 'darkGray'
+
+    [blocks.segments.options]
+      branch_icon = ''
+      commit_icon = '@'
+      fetch_status = true
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    template = '{{ .FormattedMs }}'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+
+    [blocks.segments.properties]
+      threshold = 5000
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    template = '➜'
+    style = 'plain'
+    background = 'transparent'
+    foreground_templates = [
+      '{{ if gt .Code 0 }}red{{ end }}',
+      '{{ if eq .Code 0 }}green{{ end }}',
+    ]
+
+[transient_prompt]
+  template = '➜ '
+  foreground_templates = [
+    '{{if gt .Code 0}}red{{end}}',
+    '{{if eq .Code 0}}green{{end}}',
+  ]
+  background = 'transparent'

@@ -1,0 +1,8 @@
+hl.on("hyprland.start", function()
+	hl.exec_cmd("hyprctl setcursor macOS 33")
+	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("qs -n")
+	hl.exec_cmd("qs -p ~/.config/quickshell/launcher.qml")
+	hl.exec_cmd("mako")
+	hl.exec_cmd("mkdir -p /run/user/1000/mpd")
+end)
